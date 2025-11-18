@@ -44,4 +44,6 @@ def test_login(driver):
     error_element = driver.find_element(*error_message_loc)
     assert "Пожалуйста, проверьте свой пароль" in error_element.text
 
+    #test_steam
+
 
