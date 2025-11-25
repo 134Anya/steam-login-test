@@ -1,10 +1,23 @@
+from asyncio import timeout
+
 import pytest
+from faker import Faker
 from selenium import webdriver
 from selenium.webdriver.common.by import By
 from selenium.webdriver.support import expected_conditions as EC
 from selenium.webdriver.support.ui import WebDriverWait
-import uuid
 
+TIMEOUT = 10
+MAIN_PAGE = "https://store.steampowered.com/"
+LOGIN_PAGE_LOC = (By.XPATH, '//a[contains(@class, "global_action_link")]')
+USERNAME_LOC = (By.XPATH, '//div[text()="Войдите, используя имя аккаунта"]/following::input[@type="text"][1]')
+PASSWORD_LOC = (By.XPATH, '//input[@type="password"]')
+LOGIN_BUTTON_LOC = (By.XPATH, '//div[@data-featuretarget="login"]//button[@type="submit"]')
+LOADING_INDICATOR_LOC = (By.XPATH, '//div[@data-featuretarget="login"]//button[@type="submit" and @disabled]')
+ERROR_MESSAGE_LOC = (By.XPATH, '//button[@type="submit"]/parent::div/following-sibling::div')
+EXPECTED_TEXT = "Пожалуйста, проверьте свой пароль и имя аккаунта и попробуйте снова."
+
+fake = Faker()
 
 
 @pytest.fixture
@@ -15,35 +28,27 @@ def driver():
 
 
 def test_login(driver):
-    wait = WebDriverWait(driver, 10)
+    wait = WebDriverWait(driver, TIMEOUT)
 
-
-    login_page_loc = (By.CLASS_NAME, "global_action_link")
-    username_loc = (By.XPATH, '//div[text()="Войдите, используя имя аккаунта"]/following::input[@type="text"][1]')
-    password_loc = (By.XPATH, '//input[@type="password"]')
-    login_button_loc = (By.XPATH, '//button[@type="submit" and contains(text(), "Войти")]')
-    loading_indicator_loc = (By.XPATH, '//button[contains(text(), "Войти") and @disabled]')
-    error_message_loc = (By.XPATH, "//div[contains(., 'Пожалуйста, проверьте свой пароль и имя аккаунта и попробуйте снова.')]")
-
-    driver.get("https://store.steampowered.com/")
-    login_page = wait.until(EC.element_to_be_clickable(login_page_loc))
+    driver.get(MAIN_PAGE)
+    login_page = wait.until(EC.element_to_be_clickable(LOGIN_PAGE_LOC))
     login_page.click()
 
-    username = wait.until(EC.visibility_of_element_located(username_loc))
-    password = wait.until(EC.visibility_of_element_located(password_loc))
+    username = wait.until(EC.visibility_of_element_located(USERNAME_LOC))
+    password = wait.until(EC.visibility_of_element_located(PASSWORD_LOC))
 
-
-    wait.until(EC.element_to_be_clickable(login_button_loc))
-    username.send_keys(str(uuid.uuid4))
-    password.send_keys(str(uuid.uuid4))
-    login_button = wait.until(EC.element_to_be_clickable(login_button_loc))
+    wait.until(EC.element_to_be_clickable(LOGIN_BUTTON_LOC))
+    username.send_keys(fake.user_name())
+    password.send_keys(fake.password())
+    login_button = wait.until(EC.element_to_be_clickable(LOGIN_BUTTON_LOC))
     login_button.click()
-    wait.until(EC.presence_of_element_located(loading_indicator_loc))
+    wait.until(EC.presence_of_element_located(LOADING_INDICATOR_LOC))
+    wait.until(EC.invisibility_of_element_located(LOADING_INDICATOR_LOC))
+    wait.until(EC.visibility_of_element_located(ERROR_MESSAGE_LOC))
 
-    wait.until(EC.visibility_of_element_located(error_message_loc))
-    error_element = driver.find_element(*error_message_loc)
-    assert "Пожалуйста, проверьте свой пароль" in error_element.text
+    wait.until(EC.visibility_of_element_located(ERROR_MESSAGE_LOC))
 
-    #test_steam
+    error_element = driver.find_element(*ERROR_MESSAGE_LOC)
 
-
+    actual_text = error_element.text
+    assert EXPECTED_TEXT in actual_text, f"Ожидаемый текст ошибки : {EXPECTED_TEXT}! Фактический текст ошибки : {actual_text}"
