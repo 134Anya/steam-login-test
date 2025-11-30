@@ -1,5 +1,3 @@
-from asyncio import timeout
-
 import pytest
 from faker import Faker
 from selenium import webdriver
@@ -16,6 +14,7 @@ LOGIN_BUTTON_LOC = (By.XPATH, '//div[@data-featuretarget="login"]//button[@type=
 LOADING_INDICATOR_LOC = (By.XPATH, '//div[@data-featuretarget="login"]//button[@type="submit" and @disabled]')
 ERROR_MESSAGE_LOC = (By.XPATH, '//button[@type="submit"]/parent::div/following-sibling::div')
 EXPECTED_TEXT = "Пожалуйста, проверьте свой пароль и имя аккаунта и попробуйте снова."
+UNIQUE_LOGIN_PAGE_LOC = (By.XPATH, '//img[contains(@src, "blob:https://store.steampowered.com")]')
 
 fake = Faker()
 
@@ -37,18 +36,16 @@ def test_login(driver):
     username = wait.until(EC.visibility_of_element_located(USERNAME_LOC))
     password = wait.until(EC.visibility_of_element_located(PASSWORD_LOC))
 
-    wait.until(EC.element_to_be_clickable(LOGIN_BUTTON_LOC))
+    wait.until(EC.presence_of_element_located(UNIQUE_LOGIN_PAGE_LOC))
     username.send_keys(fake.user_name())
     password.send_keys(fake.password())
     login_button = wait.until(EC.element_to_be_clickable(LOGIN_BUTTON_LOC))
     login_button.click()
     wait.until(EC.presence_of_element_located(LOADING_INDICATOR_LOC))
     wait.until(EC.invisibility_of_element_located(LOADING_INDICATOR_LOC))
-    wait.until(EC.visibility_of_element_located(ERROR_MESSAGE_LOC))
 
-    wait.until(EC.visibility_of_element_located(ERROR_MESSAGE_LOC))
 
-    error_element = driver.find_element(*ERROR_MESSAGE_LOC)
+    error_element = wait.until(EC.visibility_of_element_located(ERROR_MESSAGE_LOC))
 
     actual_text = error_element.text
     assert EXPECTED_TEXT in actual_text, f"Ожидаемый текст ошибки : {EXPECTED_TEXT}! Фактический текст ошибки : {actual_text}"
