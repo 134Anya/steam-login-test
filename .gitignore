@@ -1,0 +1,12 @@
+# created by virtualenv automatically
+.venv/
+venv/
+env/
+__pycache__/
+*.py[cod]
+*$py.class
+.idea/
+.vscode/
+.pytest_cache/
+.DS_Store
+Thumbs.db
