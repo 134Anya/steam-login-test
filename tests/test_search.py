@@ -1,0 +1,25 @@
+import pytest
+from pages.main_page import MainPage
+from pages.result_page import ResultPage
+from data.test_data import GAMES_DATA
+
+@pytest.mark.parametrize("game_name, qty",GAMES_DATA)
+def test_sort_prices(driver, game_name, qty):
+    main_page = MainPage(driver)
+
+    main_page.wait_for_open_main_page()
+    main_page.search_game(game_name)
+
+    result_page = ResultPage(driver)
+    result_page.ensure_page_loaded()
+    result_page.sort_by_price_desc()
+
+    actual_prices = result_page.get_prices(qty)
+    print(f"Цены для '{game_name}': {actual_prices}")
+    expected_prices = sorted(actual_prices, reverse=True)
+
+    assert actual_prices == expected_prices, \
+        (f"Цены отсортированы не по убыванию."
+         f"Ожидаемая сортировка цен: {expected_prices}\n"
+         f"Фактическая сортировка цен:  {actual_prices}")
+
