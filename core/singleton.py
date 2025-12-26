@@ -1,17 +1,24 @@
 from selenium import webdriver
 
+from core.configreader import ConfigReader
+
+
 class DriverSingleton:
-    _instance = None
     _driver = None
 
-    def get_driver(self):
-        if self._driver is None:
-            options = webdriver.ChromeOptions()
-            options.add_argument("--start-maximized")
-            self._driver = webdriver.Chrome(options=options)
-        return self._driver
+    @classmethod
+    def get_driver(cls):
+        if cls._driver is None:
+            config = ConfigReader.get_config()
 
-    def close_driver(self):
-        if self._driver:
-            self._driver.quit()
-            self._driver = None
+            options = webdriver.ChromeOptions()
+            if config["browser_options"]["start_maximized"]:
+                options.add_argument("--start-maximized")
+            cls._driver = webdriver.Chrome(options=options)
+        return cls._driver
+
+    @classmethod
+    def close_driver(cls):
+        if cls._driver:
+            cls._driver.quit()
+            cls._driver = None

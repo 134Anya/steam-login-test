@@ -1,31 +1,41 @@
+from selenium.webdriver.common.by import By
+from selenium.webdriver.support import expected_conditions as EC
+from selenium.webdriver.support.ui import WebDriverWait
 
 from pages.base_page import BasePage
-from locators.result_page_locators import ResultPageLocators
+
 
 class ResultPage(BasePage):
+    DROP_DOWN_LOC = (By.ID, "sort_by_trigger")
+    SORT_OPTION_DESC_LOC = (By.ID, "Price_DESC")
+    SORT_LOC = (By.ID, "sort_by_trigger")
+    PRICE_LOC = (By.XPATH, '//div[contains(@class, "discount_final_price")]')
+    LAST_RESULT_LOC = LAST_RESULT_IMAGE = (By.XPATH, '(//a[contains(@class, "search_result_row")])[last()]//img')
+    RESULT_PAGE_LOADER_LOC = (By.XPATH, '//div[@id="search_results" and @style = "opacity: 0.5;"]')
+    SEARCH_RESULT_ROW = (By.XPATH, "//*[@id='search_resultsRows']/a")
+    SORT_DESC_LOC = (By.XPATH, "//*[@id='Price_DESC']")
 
     def __init__(self, driver):
         super().__init__(driver, url=None)
 
     def ensure_page_loaded(self):
-        self.wait_for_unique_loc(ResultPageLocators.LAST_RESULT_LOC)
+        WebDriverWait(self.driver, self.timeout).until(EC.visibility_of_element_located(self.LAST_RESULT_LOC))
 
     def sort_by_price_desc(self):
-        dropdown = self.element_is_clickable(ResultPageLocators.DROP_DOWN_LOC)
+        dropdown = WebDriverWait(self.driver, self.timeout).until(EC.element_to_be_clickable(self.DROP_DOWN_LOC))
         dropdown.click()
 
-        old_row = self.element_is_visible(ResultPageLocators.SEARCH_RESULT_ROW)
+        old_row = WebDriverWait(self.driver, self.timeout).until(
+            EC.visibility_of_element_located(self.SEARCH_RESULT_ROW))
 
-        option = self.element_is_clickable(ResultPageLocators.SORT_OPTION_DESC_LOC)
+        option = WebDriverWait(self.driver, self.timeout).until(EC.element_to_be_clickable(self.SORT_OPTION_DESC_LOC))
         option.click()
 
-        self.wait_for_staleness(old_row)
-
-        #self.element_is_visible(ResultPageLocators.RESULT_PAGE_LOADER_LOC)
-        #self.element_is_invisible(ResultPageLocators.RESULT_PAGE_LOADER_LOC)
+        WebDriverWait(self.driver, self.timeout).until(EC.url_contains("sort_by=Price_DES"))
+        WebDriverWait(self.driver, self.timeout).until(EC.staleness_of(old_row))
 
     def get_prices(self, n):
-        elements = self.find_all(ResultPageLocators.PRICE_LOC)
+        elements = WebDriverWait(self.driver, self.timeout).until(EC.presence_of_all_elements_located(self.PRICE_LOC))
         prices = []
 
         for el in elements[:n]:
@@ -34,13 +44,9 @@ class ResultPage(BasePage):
                 prices.append(0.0)
                 continue
             clean_text = (text
-                          .replace(" ","")
+                          .replace(" ", "")
                           .replace("руб", "")
                           .replace(",", ".")
                           )
             prices.append(float(clean_text))
         return prices
-
-
-
-

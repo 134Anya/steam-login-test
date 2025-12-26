@@ -1,8 +1,9 @@
 import pytest
 from core.singleton import DriverSingleton
 
-@pytest.fixture(scope="session")
+
+@pytest.fixture(scope="function")
 def driver():
-    driver_instance = DriverSingleton().get_driver()
+    driver_instance = DriverSingleton.get_driver()
     yield driver_instance
-    DriverSingleton().close_driver()
+    DriverSingleton.close_driver()
