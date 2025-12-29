@@ -10,10 +10,12 @@ class DriverSingleton:
     def get_driver(cls):
         if cls._driver is None:
             config = ConfigReader.get_config()
-
             options = webdriver.ChromeOptions()
-            if config["browser_options"]["start_maximized"]:
-                options.add_argument("--start-maximized")
+            browser_args = config.get("browser_options", [])
+
+            for arg in browser_args:
+                options.add_argument(arg)
+
             cls._driver = webdriver.Chrome(options=options)
         return cls._driver
 

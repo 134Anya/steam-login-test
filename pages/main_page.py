@@ -9,8 +9,7 @@ from pages.base_page import BasePage
 
 class MainPage(BasePage):
     SEARCH_FIELD_LOC = (By.XPATH, '//form[@role="search"]')
-    # SUBMIT_BUTTON_LOC = (By.XPATH, '//button[@type = "submit"]')
-    SEARCH_INPUT_LOC = (By.NAME, "term")
+    SEARCH_INPUT_LOC = (By.XPATH, '//input[@name="term"]')
 
     def __init__(self, driver):
         super().__init__(driver)
@@ -23,7 +22,5 @@ class MainPage(BasePage):
     def search_game(self, game_name):
         search_box = WebDriverWait(self.driver, self.timeout).until(EC.element_to_be_clickable(self.SEARCH_INPUT_LOC))
         search_box.click()
-        search_box.send_keys(Keys.CONTROL, "a")
-        search_box.send_keys(Keys.BACK_SPACE)
-        search_box.send_keys(game_name)
-        search_box.send_keys(Keys.ENTER)
+        search_box.send_keys(Keys.CONTROL + "a", Keys.BACK_SPACE)
+        search_box.send_keys(game_name, Keys.ENTER)

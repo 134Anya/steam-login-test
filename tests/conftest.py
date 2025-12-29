@@ -1,4 +1,5 @@
 import pytest
+
 from core.singleton import DriverSingleton
 
 

@@ -13,7 +13,7 @@ def test_sort_prices(driver, game_name, qty):
     main_page.search_game(game_name)
 
     result_page = ResultPage(driver)
-    result_page.ensure_page_loaded()
+    result_page.wait_for_page_loaded()
     result_page.sort_by_price_desc()
 
     actual_prices = result_page.get_prices(qty)
