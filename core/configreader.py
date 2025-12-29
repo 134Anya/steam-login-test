@@ -5,13 +5,13 @@ import os
 class ConfigReader:
     _config = None
 
+    ROOT_DIR = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
+    CONFIG_PATH = os.path.join(ROOT_DIR, "config.json")
+
     @staticmethod
     def get_config():
         if ConfigReader._config is None:
-            root_dir = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
-            config_path = os.path.join(root_dir, "config.json")
-
-            with open(config_path, "r", encoding="utf-8") as file:
+            with open(ConfigReader.CONFIG_PATH, "r", encoding="utf-8") as file:
                 ConfigReader._config = json.load(file)
 
         return ConfigReader._config
