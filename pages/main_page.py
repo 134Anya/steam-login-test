@@ -11,9 +11,6 @@ class MainPage(BasePage):
     SEARCH_FIELD_LOC = (By.XPATH, '//form[@role="search"]')
     SEARCH_INPUT_LOC = (By.XPATH, '//input[@name="term"]')
 
-    def __init__(self, driver):
-        super().__init__(driver)
-
     def ensure_main_page_loaded(self):
         WebDriverWait(self.driver, self.timeout).until(EC.visibility_of_element_located(self.SEARCH_FIELD_LOC))
 

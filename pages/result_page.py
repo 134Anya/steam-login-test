@@ -13,9 +13,6 @@ class ResultPage(BasePage):
     RESULT_PAGE_LOADER_LOC = (By.XPATH, '//*[@id="search_result_container" and contains(@style, "opacity: 0.5")]')
     SEARCH_RESULT_ROW = (By.XPATH, "//*[@id='search_resultsRows']//a")
 
-    def __init__(self, driver):
-        super().__init__(driver)
-
     def wait_for_page_loaded(self):
         WebDriverWait(self.driver, self.timeout).until(EC.visibility_of_element_located(self.LAST_RESULT_LOC))
 
