@@ -1,15 +1,12 @@
 import pytest
 
 from data.test_data import GAMES_DATA
-from pages.main_page import MainPage
 from pages.result_page import ResultPage
 
 
 @pytest.mark.parametrize("game_name, qty", GAMES_DATA)
-def test_sort_prices(driver, game_name, qty):
-    main_page = MainPage(driver)
-
-    main_page.open_main_page()
+def test_sort_prices(open_main_page, driver, game_name, qty):
+    main_page = open_main_page
     main_page.search_game(game_name)
 
     result_page = ResultPage(driver)
