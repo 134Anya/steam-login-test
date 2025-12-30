@@ -13,10 +13,10 @@ class MainPage(BasePage):
 
     def __init__(self, driver):
         super().__init__(driver)
-        self.url = ConfigReader.get_config()["steam_url"]
 
     def open_main_page(self):
-        self.open()
+        url = ConfigReader.get_config()["steam_url"]
+        self.driver.get(url)
         WebDriverWait(self.driver, self.timeout).until(EC.visibility_of_element_located(self.SEARCH_FIELD_LOC))
 
     def search_game(self, game_name):

@@ -14,7 +14,7 @@ class ResultPage(BasePage):
     SEARCH_RESULT_ROW = (By.XPATH, "//*[@id='search_resultsRows']//a")
 
     def __init__(self, driver):
-        super().__init__(driver, url=None)
+        super().__init__(driver)
 
     def wait_for_page_loaded(self):
         WebDriverWait(self.driver, self.timeout).until(EC.visibility_of_element_located(self.LAST_RESULT_LOC))
@@ -26,7 +26,7 @@ class ResultPage(BasePage):
         option = WebDriverWait(self.driver, self.timeout).until(EC.element_to_be_clickable(self.SORT_OPTION_DESC_LOC))
         option.click()
 
-        WebDriverWait(self.driver, 5, poll_frequency=0.01).until(
+        WebDriverWait(self.driver, self.timeout, poll_frequency=0.1).until(
             EC.visibility_of_element_located(self.RESULT_PAGE_LOADER_LOC))
         WebDriverWait(self.driver, self.timeout).until(EC.invisibility_of_element_located(self.RESULT_PAGE_LOADER_LOC))
         WebDriverWait(self.driver, self.timeout).until(EC.presence_of_all_elements_located(self.PRICE_LOC))
