@@ -1,0 +1,9 @@
+{
+  "steam_url": "https://store.steampowered.com/",
+  "timeout": 10,
+  "browser_options": [
+    "--start-maximized",
+    "--disable-notifications",
+    "--window-size=1920,1080"
+  ]
+}
