@@ -6,3 +6,5 @@ __pycache__/
 *.log
 Logs/
 **/Logs/
+.DS_Store
+Thumbs.db
