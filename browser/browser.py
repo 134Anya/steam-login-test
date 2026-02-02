@@ -5,6 +5,8 @@ from selenium.common import WebDriverException
 from selenium.webdriver.remote.webdriver import WebDriver
 from selenium.webdriver.support import expected_conditions
 from selenium.webdriver.support.wait import WebDriverWait
+
+from core.config import Config
 from logger.logger import Logger
 
 
@@ -94,7 +96,7 @@ class Browser:
             Logger.error(f"{self}: Failed to switch to new window. Error: {err}")
             raise
 
-    def get_window_handles(self)-> list:
+    def get_window_handles(self) -> list:
         return self._driver.window_handles
 
     def switch_to_window_by_handle(self, handle: str):
@@ -140,10 +142,6 @@ class Browser:
     def __repr__(self) -> str:
         return str(self)
 
-    def find_elements(self, locator: tuple):
-        Logger.info(f"{self}: find elements by locator '{locator}'")
-        return self._driver.find_elements(*locator)
-
     def refresh(self):
         Logger.info(f"{self}: refresh page")
         self._driver.refresh()
@@ -160,3 +158,11 @@ class Browser:
         url = self._driver.current_url
         Logger.info(f"{self}: current URL is '{url}'")
         return url
+
+    def open_endpoint(self, endpoint: str):
+        url = f"http://{Config.BASE_URL}/{endpoint}"
+        self.get(url)
+
+    def open_url_with_credentials(self, username, password, path):
+        target_url = f"http://{username}:{password}@{Config.BASE_URL}/{path}"
+        self.get(target_url)

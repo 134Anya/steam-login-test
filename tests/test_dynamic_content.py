@@ -15,6 +15,6 @@ class TestDynamicContent:
                 print(f"Обнаружен дубликат")
                 match_found = True
                 break
-            page.refresh()
+            browser_fixture.refresh()
 
         assert match_found,f"За {max_retries} попыток  не обнаружено дубликатов изображений"

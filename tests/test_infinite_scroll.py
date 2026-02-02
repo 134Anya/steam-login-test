@@ -1,5 +1,6 @@
 from pages.scroll_page import ScrollPage
 
+
 class TestScroll:
     def test_infinite_scroll(self, browser_fixture):
         page = ScrollPage(browser_fixture)

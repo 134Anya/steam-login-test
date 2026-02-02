@@ -1,14 +1,14 @@
 from selenium.webdriver.common.action_chains import ActionChains
-from selenium.webdriver.common.by import By
 from selenium.webdriver.common.keys import Keys
+
 from browser.browser import Browser
-from core.config import Config
 from elements.web_element import WebElement
 from .base_page import BasePage
 
+
 class SliderPage(BasePage):
-    SLIDER_LOC = (By.XPATH, '//*[@type="range"]')
-    SLIDER_VALUE = (By.ID, "range")
+    SLIDER_LOC = '//*[@type="range"]'
+    SLIDER_VALUE = "range"
     ENDPOINT = "horizontal_slider"
 
     def __init__(self, browser: Browser):
@@ -19,8 +19,7 @@ class SliderPage(BasePage):
         self.unique_element = self.slider
 
     def open(self):
-        url = f"http://{Config.BASE_URL}/{self.ENDPOINT}"
-        self.browser.get(url)
+        self.browser.open_endpoint(self.ENDPOINT)
 
     def get_min_value(self) -> float:
         val = self.slider.get_attribute("min")

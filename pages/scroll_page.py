@@ -1,9 +1,6 @@
 import time
 
-from selenium.webdriver.common.by import By
-
 from browser.browser import Browser
-from core.config import Config
 from elements.web_element import WebElement
 from .base_page import BasePage
 from elements.label import Label
@@ -11,8 +8,8 @@ from elements.label import Label
 class ScrollPage(BasePage):
 
     ENDPOINT = "infinite_scroll"
-    PARAGRAPH_LOC = (By.CLASS_NAME, "jscroll-added")
-    HEADER_LOC = (By.TAG_NAME, "h3")
+    PARAGRAPH_LOC = "jscroll-added"
+    HEADER_LOC = "//h3[text()='Infinite Scroll']"
 
     def __init__(self, browser:Browser):
         super().__init__(browser)
@@ -21,8 +18,7 @@ class ScrollPage(BasePage):
         self.unique_element = Label(self.browser, self.HEADER_LOC, "Заголовок страницы")
 
     def open(self):
-        url = f"http://{Config.BASE_URL}/{self.ENDPOINT}"
-        self.browser.get(url)
+        self.browser.open_endpoint(self.ENDPOINT)
 
     def get_count(self) -> int:
         elements = self.browser.find_elements(self.PARAGRAPH_LOC)

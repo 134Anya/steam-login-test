@@ -1,7 +1,7 @@
 from selenium.webdriver.common.by import By
 
 from browser.browser import Browser
-from core.config import Config
+from elements.multi_web_element import MultiWebElement
 from elements.web_element import WebElement
 from .base_page import BasePage
 
@@ -9,27 +9,30 @@ from .base_page import BasePage
 class HoverPage(BasePage):
     ENDPOINT = "hovers"
     UNIQUE_ELEMENT_LOC = (By.XPATH, '//*[contains(@class, "figure")]')
+    FIGURE_TEMPLATE = "(//*[contains(@class, 'figure')])[{}]"
+    NAME_TEMPLATE = "(//*[contains(@class, 'figure')])[{}]//h5"
+    LINK_TEMPLATE = "(//div[@class='figure'])[{}]//a"
 
     def __init__(self, browser: Browser):
         super().__init__(browser)
         self.page_name = "Hovers"
-        self.unique_element = WebElement(self.browser, self.UNIQUE_ELEMENT_LOC)
+        self.unique_element = WebElement(self.browser, self.FIGURE_TEMPLATE.format(1),
+                                         "маркер загруженной страницы Hovers")
 
     def open(self):
-        url = f"http://{Config.BASE_URL}/{self.ENDPOINT}"
-        self.browser.get(url)
+        self.browser.open_endpoint(self.ENDPOINT)
 
     def get_user_avatar(self, index: int) -> WebElement:
-        user = (By.XPATH, f"(//*[contains(@class, 'figure')])[{index}]")
-        return WebElement(self.browser, user)
+        return WebElement(self.browser, self.FIGURE_TEMPLATE.format(index), f"Аватар {index}")
 
     def get_user_name(self, index: int) -> WebElement:
-        loc = (By.XPATH, f"//*[contains(@class, 'figure')][{index}]//h5")
-        return WebElement(self.browser, loc)
+        return WebElement(self.browser, self.NAME_TEMPLATE.format(index), f"Имя {index}")
 
     def get_user_link(self, index: int) -> WebElement:
-        loc = (By.XPATH, f"(//div[@class='figure'])[{index}]//a")
-        return WebElement(self.browser, loc)
+        return WebElement(self.browser, self.LINK_TEMPLATE.format(index), f"Ссылка {index}")
+
+    def get_all_avatars(self) -> MultiWebElement:
+        return MultiWebElement(self.browser, self.FIGURE_TEMPLATE, "Все аватары")
 
     def hover_over_user(self, index: int):
         self.get_user_avatar(index).hover()

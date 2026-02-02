@@ -1,5 +1,6 @@
 from pages.hovers_page import HoverPage
 
+
 class TestHovers:
     def test_hovers(self, browser_fixture):
         page = HoverPage(browser_fixture)

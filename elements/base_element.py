@@ -136,3 +136,6 @@ class BaseElement:
     def scroll_into_view(self) -> None:
         element = self.wait_for_presence()
         self.browser.execute_script("arguments[0].scrollIntoView({block: 'center'});", element)
+
+    def is_displayed(self)-> bool:
+        return self.get_element().is_displayed()

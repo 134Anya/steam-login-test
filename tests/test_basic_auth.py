@@ -7,7 +7,7 @@ class TestBasicAuth:
     def test_login_success(self, browser_fixture):
 
         page = BasicAuthPage(browser_fixture)
-        page.open_with_credentials(TestData.ADMIN_LOGIN, TestData.ADMIN_PASSWORD)
+        page.login_with_credentials(TestData.ADMIN_LOGIN, TestData.ADMIN_PASSWORD)
         page.wait_for_open()
         actual_text = page.get_congratulation_text()
         expected_text = "Congratulations! You must have the proper credentials."

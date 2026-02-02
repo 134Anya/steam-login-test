@@ -1,32 +1,28 @@
-from selenium.webdriver.common.by import By
-
-from .base_page import BasePage
 from browser.browser import Browser
 from elements.web_element import WebElement
-from core.config import Config
-from logger.logger import Logger
+from .base_page import BasePage
 
 
 class JavascriptAlerts(BasePage):
-    UNIQUE_ELEMENT_LOC = (By.XPATH, '//button[@onclick = "jsPrompt()"]')
-    JS_ALERT_BUTTON_LOC = (By.XPATH,'//button[@onclick = "jsAlert()"]')
-    JS_CONFIRM_BUTTON_LOC = (By.XPATH, '//button[@onclick = "jsConfirm()"]')
-    JS_PROMPT_BUTTON_LOC = (By.XPATH, '//button[@onclick = "jsPrompt()"]')
-    RESULT_TEXT_LOC = (By.ID, 'result')
+    UNIQUE_ELEMENT_LOC = '//button[@onclick = "jsPrompt()"]'
+    JS_ALERT_BUTTON_LOC = '//button[@onclick = "jsAlert()"]'
+    JS_CONFIRM_BUTTON_LOC = '//button[@onclick = "jsConfirm()"]'
+    JS_PROMPT_BUTTON_LOC = '//button[@onclick = "jsPrompt()"]'
+    RESULT_TEXT_LOC = 'result'
     ENDPOINT = "javascript_alerts"
 
-    def __init__(self, browser : Browser):
+    def __init__(self, browser: Browser):
         super().__init__(browser)
         self.page_name = "Javascript Alerts"
-        self.unique_element = WebElement(self.browser,self.UNIQUE_ELEMENT_LOC,"jsPrompt кнопка тут уникальный элемент")
-        self.button_alert = WebElement(self.browser,self.JS_ALERT_BUTTON_LOC, "кнопка 'Click for JS Alert'")
+        self.unique_element = WebElement(self.browser, self.UNIQUE_ELEMENT_LOC,
+                                         "jsPrompt кнопка тут уникальный элемент")
+        self.button_alert = WebElement(self.browser, self.JS_ALERT_BUTTON_LOC, "кнопка 'Click for JS Alert'")
         self.confirm_button = WebElement(self.browser, self.JS_CONFIRM_BUTTON_LOC, "кнопка 'Click for JS Confirm'")
-        self.prompt_button = WebElement(self.browser, self.JS_PROMPT_BUTTON_LOC,"кнопка 'Click for JS Prompt'")
+        self.prompt_button = WebElement(self.browser, self.JS_PROMPT_BUTTON_LOC, "кнопка 'Click for JS Prompt'")
         self.result_text = WebElement(self.browser, self.RESULT_TEXT_LOC, "Текст результата")
 
     def open(self):
-        url = f"http://{Config.BASE_URL}/{self.ENDPOINT}"
-        self.browser.get(url)
+        self.browser.open_endpoint(self.ENDPOINT)
 
     def js_click(self):
         self.button_alert.wait_for_visible().click()

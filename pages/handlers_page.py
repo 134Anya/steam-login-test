@@ -7,19 +7,18 @@ from .base_page import BasePage
 
 
 class HandlersPage(BasePage):
-    CLICK_HERE_LOC = (By.XPATH, "//a[@href='/windows/new']")
+    CLICK_HERE_LOC = (By.XPATH, "//a[contains(text(), 'Click Here')]")
     ENDPOINT = "windows"
-    NEW_WINDOW_HEADER_LOC = (By.TAG_NAME, "h3")
+    NEW_WINDOW_HEADER_LOC = (By.XPATH, "//h3[text()='New Window']")
 
     def __init__(self, browser: Browser):
         super().__init__(browser)
         self.click_here = WebElement(self.browser, self.CLICK_HERE_LOC, "ссылка новой вкладки")
         self.new_window_header = WebElement(self.browser, self.NEW_WINDOW_HEADER_LOC, "Заголовок New Window")
-        self.unique_element = self.click_here
+        self.unique_element = WebElement(self.browser, self.CLICK_HERE_LOC, "уникальный элемент страницы")
 
     def open(self):
-        url = f"http://{Config.BASE_URL}/{self.ENDPOINT}"
-        self.browser.get(url)
+        self.browser.open_endpoint(self.ENDPOINT)
 
     def click_new_window_link(self):
         self.click_here.click()

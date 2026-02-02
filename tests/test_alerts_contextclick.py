@@ -1,4 +1,3 @@
-
 from data.test_data import TestData
 from pages.context_menu_page import ContextMenu
 

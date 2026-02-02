@@ -1,9 +1,10 @@
-import pytest
-from pages.javascript_alerts_page import JavascriptAlerts
-from data.test_data import TestData
 from faker import Faker
 
+from data.test_data import TestData
+from pages.javascript_alerts_page import JavascriptAlerts
+
 fake = Faker()
+
 
 class TestAlerts:
 
@@ -15,12 +16,11 @@ class TestAlerts:
         page.js_click()
         alert_text = browser_fixture.get_alert_text()
         browser_fixture.accept_alert()
-        assert TestData.ALERT_TEXT_EXPECTED == alert_text,\
+        assert TestData.ALERT_TEXT_EXPECTED == alert_text, \
             f"Текст алерта не совпал! Ожидали: {TestData.ALERT_TEXT_EXPECTED}, Получили: {alert_text}"
         page_result = page.get_result_text()
         assert TestData.RESULT_ALERT_SUCCESS == page_result, \
-        f"Неверный алерт. Ожидался: {TestData.RESULT_ALERT_SUCCESS}, получен: {page_result} "
-
+            f"Неверный алерт. Ожидался: {TestData.RESULT_ALERT_SUCCESS}, получен: {page_result} "
 
         page.js_confirm()
         alert_text = browser_fixture.get_alert_text()
@@ -30,7 +30,6 @@ class TestAlerts:
         page_result = page.get_result_text()
         assert TestData.RESULT_CONFIRM_OK == page_result, \
             f"Результат Confirm не совпал. Ожидали: {TestData.RESULT_CONFIRM_OK}, Получили: {page_result}"
-
 
         page.js_prompt()
         alert_text = browser_fixture.get_alert_text()

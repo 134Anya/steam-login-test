@@ -9,13 +9,13 @@ from elements.button import Button
 
 
 class UploadImagePage(BasePage):
-    UPLOAD_BUTTON_LOC = (By.ID, "file-upload")
-    SUBMIT_BUTTON_LOC = (By.ID,"file-submit")
-    FILE_NAME_LOC = (By.ID, "uploaded-files")
-    RESULT_TEXT = (By.TAG_NAME, "h3")
-    DRAG_DROP_UPLOAD = (By.ID, "drag-drop-upload")
-    DRAG_DROP_FILENAME_LOC = (By.XPATH, "//*[@id='drag-drop-upload']//span[@data-dz-name]")
-    CHECKMARK_LOC = (By.XPATH, "//*[@id='drag-drop-upload']//span[text()='✔']")
+    UPLOAD_BUTTON_LOC =  "file-upload"
+    SUBMIT_BUTTON_LOC = "file-submit"
+    FILE_NAME_LOC = "uploaded-files"
+    RESULT_TEXT = "//h3[text()='File Uploaded!']"
+    DRAG_DROP_UPLOAD = "drag-drop-upload"
+    DRAG_DROP_FILENAME_LOC =  "//*[@id='drag-drop-upload']//span[@data-dz-name]"
+    CHECKMARK_LOC = "//*[@id='drag-drop-upload']//span[text()='✔']"
     ENDPOINT = "upload"
 
     def __init__(self, browser:Browser):
@@ -31,8 +31,7 @@ class UploadImagePage(BasePage):
         self.success_checkmark = Label(self.browser, self.CHECKMARK_LOC, "Галочка успеха")
 
     def open(self):
-        url = f"http://{Config.BASE_URL}/{self.ENDPOINT}"
-        self.browser.get(url)
+        self.browser.open_endpoint(self.ENDPOINT)
 
     def upload_file(self, file_path:str):
         self.file_input.send_keys(file_path)
@@ -50,5 +49,8 @@ class UploadImagePage(BasePage):
     def get_filename_drag_drop(self)->str:
         return self.drop_filename.get_text().strip()
 
-    def check_checkmark_visibility(self):
-        return self.success_checkmark.wait_for_visible()
+    def is_checkmark_visible(self)->bool:
+        try:
+            return self.success_checkmark.wait_for_visible(timeout=5).is_displayed()
+        except Exception:
+            return False

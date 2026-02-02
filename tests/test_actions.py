@@ -1,5 +1,7 @@
 import random
+
 from pages.slider_page import SliderPage
+
 
 class TestActions:
     def test_slider(self, browser_fixture):

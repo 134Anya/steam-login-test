@@ -26,12 +26,11 @@ class TestUpload:
 
         file_name = os.path.basename(full_path)
         page.click_upload_area()
-        time.sleep(2)
-        pyperclip.copy(full_path)
-        pyautogui.hotkey('ctrl','v')
-        time.sleep(0.5)
+        time.sleep(3)
+        pyautogui.write(full_path, interval=0.01)
+        time.sleep(1)
         pyautogui.press('enter')
         actual_name = page.get_filename_drag_drop()
         assert actual_name == file_name, \
             f"Имя файла не совпадает! Ждали: {file_name}, получили: {actual_name}"
-        assert page.check_checkmark_visibility(), "Галочка '✔' не появилась!"
+        assert page.is_checkmark_visible(), "Галочка '✔' не появилась!"

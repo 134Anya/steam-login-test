@@ -6,7 +6,7 @@ from logger.logger import Logger
 
 @pytest.fixture(scope="function")
 def browser_fixture():
-    driver = BrowserFactory.get_driver(options=["--start-maximized", "--disable-gpu"])
+    driver = BrowserFactory.get_driver()
     browser_wrapper = Browser(driver)
 
     yield browser_wrapper
