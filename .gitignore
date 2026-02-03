@@ -1,12 +1,10 @@
-# created by virtualenv automatically
 .venv/
 venv/
-env/
-__pycache__/
-*.py[cod]
-*$py.class
 .idea/
-.vscode/
+__pycache__/
 .pytest_cache/
+*.log
+Logs/
+**/Logs/
 .DS_Store
 Thumbs.db
