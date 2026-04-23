@@ -1,0 +1,149 @@
+from services.general.base_service import BaseService
+from services.university.helpers.grade_helper import GradeHelper
+from services.university.helpers.group_helper import GroupHelper
+from services.university.helpers.student_helper import StudentHelper
+from services.university.helpers.teacher_helper import TeacherHelper
+
+from services.university.models.grade_request import GradeRequest
+from services.university.models.grade_response import GradeResponse
+from services.university.models.grade_response import GradeStatsResponse
+from services.university.models.group_request import GroupRequest
+from services.university.models.group_response import GroupResponse
+from services.university.models.student_request import StudentRequest
+from services.university.models.student_response import StudentResponse
+from services.university.models.teacher_request import TeacherRequest
+from services.university.models.teacher_response import TeacherResponse
+from utils.api_utils import ApiUtils
+
+
+class UniversityService(BaseService):
+    SERVICE_URL = "http://127.0.0.1:8001"
+
+    def __init__(self, api_utils: ApiUtils):
+        super().__init__(api_utils)
+        self.group_helper = GroupHelper(self.api_utils)
+        self.student_helper = StudentHelper(self.api_utils)
+        self.teacher_helper = TeacherHelper(self.api_utils)
+        self.grade_helper = GradeHelper(self.api_utils)
+
+    def create_group(self, group_request: GroupRequest) -> GroupResponse:
+        response = self.group_helper.post_group(json=group_request.model_dump())
+        response.raise_for_status()
+        return GroupResponse(**response.json())
+
+    def update_group(self, group_id: int, group_request: GroupRequest) -> GroupResponse:
+        response = self.group_helper.put_group(
+            group_id=group_id, json=group_request.model_dump()
+        )
+        response.raise_for_status()
+        return GroupResponse(**response.json())
+
+    def get_group(self, group_id: int) -> GroupResponse:
+        response = self.group_helper.get_group(group_id)
+        response.raise_for_status()
+        return GroupResponse(**response.json())
+
+    def get_groups(self) -> list[GroupResponse]:
+        response = self.group_helper.get_groups()
+        response.raise_for_status()
+        return [GroupResponse(**item) for item in response.json()]
+
+    def delete_group(self, group_id: int) -> GroupResponse:
+        response = self.group_helper.delete_group(group_id)
+        response.raise_for_status()
+        return (
+            response.json() if response.text else {"status_code": response.status_code}
+        )
+
+    def create_student(self, student_request: StudentRequest) -> StudentResponse:
+        response = self.student_helper.post_student(json=student_request.model_dump())
+        response.raise_for_status()
+        return StudentResponse(**response.json())
+
+    def update_student(
+        self, student_id: int, student_request: StudentRequest
+    ) -> StudentResponse:
+        response = self.student_helper.put_student(
+            student_id=student_id, json=student_request.model_dump()
+        )
+        response.raise_for_status()
+        return StudentResponse(**response.json())
+
+    def get_student(self, student_id: int) -> StudentResponse:
+        response = self.student_helper.get_student(student_id)
+        response.raise_for_status()
+        return StudentResponse(**response.json())
+
+    def get_students(self) -> list[StudentResponse]:
+        response = self.student_helper.get_students()
+        response.raise_for_status()
+        return [StudentResponse(**item) for item in response.json()]
+
+    def delete_student(self, student_id: int) -> StudentResponse:
+        response = self.student_helper.delete_student(student_id)
+        response.raise_for_status()
+        return (
+            response.json() if response.text else {"status_code": response.status_code}
+        )
+
+    def create_teacher(self, teacher_request: TeacherRequest) -> TeacherResponse:
+        response = self.teacher_helper.post_teachers(json=teacher_request.model_dump())
+        response.raise_for_status()
+        return TeacherResponse(**response.json())
+
+    def update_teacher(self, teacher_id: int, teachers_request=None) -> TeacherResponse:
+        response = self.teacher_helper.put_teachers(
+            teacher_id=teacher_id, json=teachers_request.model_dump()
+        )
+        response.raise_for_status()
+        return TeacherResponse(**response.json())
+
+    def get_teacher(self, teacher_id: int) -> TeacherResponse:
+        response = self.teacher_helper.get_teacher_by_id(teacher_id)
+        response.raise_for_status()
+        return TeacherResponse(**response.json())
+
+    def get_teachers(self) -> list[TeacherResponse]:
+        response = self.teacher_helper.get_teachers()
+        response.raise_for_status()
+        return [TeacherResponse(**item) for item in response.json()]
+
+    def delete_teacher(self, teacher_id: int) -> TeacherResponse:
+        response = self.teacher_helper.delete_teachers(teacher_id)
+        response.raise_for_status()
+        return (
+            response.json() if response.text else {"status_code": response.status_code}
+        )
+
+    def create_grade(self, grade_request: GradeRequest) -> GradeResponse:
+        response = self.grade_helper.post_grade(data=grade_request.model_dump())
+        response.raise_for_status()
+        return GradeResponse(**response.json())
+
+    def get_grade_stats(
+        self, student_id: int = None, teacher_id: int = None
+    ) -> GradeStatsResponse:
+        response = self.grade_helper.get_grade_stats(
+            student_id=student_id, teacher_id=teacher_id
+        )
+        response.raise_for_status()
+        return GradeStatsResponse(**response.json())
+
+    def update_grade(self, grade_id: int, grade_request: GradeRequest) -> GradeResponse:
+        response = self.grade_helper.put_grade(
+            grade_id=grade_id, json=grade_request.model_dump()
+        )
+        response.raise_for_status()
+        return GradeResponse(**response.json())
+
+    def get_grades(self) -> list[GradeResponse]:
+        response = self.grade_helper.get_grades()
+        response.raise_for_status()
+        return [GradeResponse(**item) for item in response.json()]
+
+    def delete_grade(self, grade_id: int) -> dict:
+        response = self.grade_helper.delete_grade(grade_id)
+        response.raise_for_status()
+        return (
+            response.json() if response.text else {"status_code": response.status_code}
+        )
