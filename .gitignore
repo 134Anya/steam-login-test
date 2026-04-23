@@ -1,3 +1,4 @@
+
 .venv/
 __pycache__/
 .pytest_cache/
@@ -5,3 +6,17 @@ __pycache__/
 *.pyc
 logs/
 .idea/
+
+
+.venv/
+venv/
+env/
+__pycache__/
+*.py[cod]
+*$py.class
+.idea/
+.vscode/
+.pytest_cache/
+.DS_Store
+Thumbs.db
+
