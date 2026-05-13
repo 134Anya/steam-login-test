@@ -1,19 +1,18 @@
-import time
 import random
+import time
 
 import pytest
 import requests
 from faker import Faker
 
 from logger.logger import Logger
+from services.auth.auth_service import AuthService
 from services.auth.models.login_request import LoginRequest
 from services.auth.models.register_request import RegisterRequest
 from services.university.models.enums import DegreeEnum, SubjectEnum
 from services.university.models.group_request import GroupRequest
 from services.university.models.student_request import StudentRequest
 from services.university.models.teacher_request import TeacherRequest
-
-from services.auth.auth_service import AuthService
 from services.university.university_service import UniversityService
 from utils.api_utils import ApiUtils
 
@@ -31,41 +30,42 @@ def wait_for_service(url, service_name, timeout=60):
                 return
         except (requests.exceptions.ConnectionError, requests.exceptions.HTTPError):
             time.sleep(1)
-
-    raise RuntimeError(f" {service_name} did not start at {check_url}")
+    raise RuntimeError(f"{service_name} did not start at {check_url}")
 
 
 @pytest.fixture(scope="session", autouse=True)
-def check_services_readiness():
-    services_to_check = {
-        "University API": UniversityService.SERVICE_URL,
-        "Auth API": AuthService.SERVICE_URL,
-    }
-    for name, url in services_to_check.items():
-        wait_for_service(url, name)
+def wait_for_auth_service():
+    wait_for_service(AuthService.SERVICE_URL, "Auth API")
 
 
-@pytest.fixture(scope="function", autouse=False)
+@pytest.fixture(scope="session", autouse=True)
+def wait_for_university_service():
+    wait_for_service(UniversityService.SERVICE_URL, "University API")
+
+
+@pytest.fixture(scope="session", autouse=True)
+def wait_for_auth_service():
+    wait_for_service(AuthService.SERVICE_URL, "Auth API")
+
+
+@pytest.fixture(scope="session", autouse=True)
+def wait_for_university_service():
+    wait_for_service(UniversityService.SERVICE_URL, "University API")
+
+
+@pytest.fixture(scope="session")
 def auth_api_utils_anonym():
-    api_utils = ApiUtils(url=AuthService.SERVICE_URL)
-    return api_utils
+    return ApiUtils(url=AuthService.SERVICE_URL)
 
 
-@pytest.fixture(scope="function", autouse=False)
-def university_api_utils_anonym():
-    api_utils = ApiUtils(url=UniversityService.SERVICE_URL)
-    return api_utils
-
-
-@pytest.fixture(scope="function", autouse=False)
+@pytest.fixture(scope="session")
 def access_token(auth_api_utils_anonym):
     auth_service = AuthService(auth_api_utils_anonym)
     username = faker.user_name()
-    password = faker.password(
-        length=30, special_chars=True, digits=True, upper_case=True, lower_case=True
-    )
+    password = faker.password(length=20, special_chars=True, digits=True)
+
     auth_service.register_user(
-        register_request=RegisterRequest(
+        RegisterRequest(
             username=username,
             password=password,
             password_repeat=password,
@@ -73,31 +73,28 @@ def access_token(auth_api_utils_anonym):
         )
     )
     login_response = auth_service.login_user(
-        login_request=LoginRequest(username=username, password=password)
+        LoginRequest(username=username, password=password)
     )
     return login_response.access_token
 
 
-@pytest.fixture(scope="function", autouse=False)
+@pytest.fixture(scope="session")
 def university_api_utils_admin(access_token):
-    api_utils = ApiUtils(
+    return ApiUtils(
         url=UniversityService.SERVICE_URL,
         headers={"Authorization": f"Bearer {access_token}"},
     )
-    return api_utils
 
 
-@pytest.fixture(scope="function", autouse=False)
+@pytest.fixture(scope="function")
 def temp_group(university_api_utils_admin):
     service = UniversityService(university_api_utils_admin)
-
-    payload = GroupRequest(name=faker.name())
-    group = service.create_group(payload)
+    group = service.create_group(GroupRequest(name=faker.word()))
     yield group
     try:
         service.delete_group(group.id)
     except Exception as e:
-        print(f"Failed to delete group {group.id}: {e}")
+        Logger.info(f"Group {group.id} already deleted")
 
 
 @pytest.fixture(scope="function")
@@ -108,15 +105,15 @@ def temp_student(university_api_utils_admin, temp_group):
         last_name=faker.last_name(),
         email=faker.email(),
         degree=random.choice([o.value for o in DegreeEnum]),
-        phone=faker.numerify("+7##########"),
+        phone=faker.numerify("+7#########"),
         group_id=temp_group.id,
     )
     student = service.create_student(payload)
     yield student
     try:
         service.delete_student(student.id)
-    except Exception:
-        pass
+    except Exception as e:
+        Logger.info(f"Student {student.id} already deleted")
 
 
 @pytest.fixture(scope="function")
@@ -132,4 +129,4 @@ def temp_teacher(university_api_utils_admin):
     try:
         service.delete_teacher(teacher.id)
     except Exception as e:
-        print(f"Cleanup warning: Could not delete teacher {teacher.id}: {e}")
+        Logger.info(f"Teacher {teacher.id} cannot be deleted (possibly has grades)")

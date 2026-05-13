@@ -1,9 +1,14 @@
 from pydantic import BaseModel, ConfigDict, Field
 
+MIN_GRADE = 1
+MAX_GRADE = 5
+
 
 class BaseGrade(BaseModel):
     model_config = ConfigDict(extra="forbid")
 
     student_id: int
     teacher_id: int
-    grade: int = Field(ge=1, le=5, description="Оценка от 1 до 5")
+    grade: int = Field(
+        ge=MIN_GRADE, le=MAX_GRADE, description=f"Оценка от {MIN_GRADE} до {MAX_GRADE}"
+    )

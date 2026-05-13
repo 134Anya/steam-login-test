@@ -1,5 +1,3 @@
-from typing import Optional
-
 import requests
 
 from services.general.helpers.base_helper import BaseHelper
@@ -9,7 +7,7 @@ class GradeHelper(BaseHelper):
     ENDPOINT_PREFIX = "/grades/"
     ROOT_ENDPOINT = f"{ENDPOINT_PREFIX}"
 
-    def get_grades(self, params: dict = None) -> requests.Response:
+    def get_grades(self, params: dict | None = None) -> requests.Response:
         response = self.api_utils.get(self.ROOT_ENDPOINT, params=params)
         return response
 
@@ -18,9 +16,9 @@ class GradeHelper(BaseHelper):
 
     def get_grade_stats(
         self,
-        student_id: Optional[int] = None,
-        teacher_id: Optional[int] = None,
-        group_id: Optional[int] = None,
+        student_id: int | None = None,
+        teacher_id: int | None = None,
+        group_id: int | None = None,
     ) -> requests.Response:
 
         params = {}
