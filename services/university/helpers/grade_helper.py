@@ -1,15 +1,13 @@
 import requests
-
 from services.general.helpers.base_helper import BaseHelper
 
 
 class GradeHelper(BaseHelper):
-    ENDPOINT_PREFIX = "/grades/"
-    ROOT_ENDPOINT = f"{ENDPOINT_PREFIX}"
+    ROOT_ENDPOINT = "/grades/"
+    STATS_ENDPOINT = f"{ROOT_ENDPOINT}stats/"
 
     def get_grades(self, params: dict | None = None) -> requests.Response:
-        response = self.api_utils.get(self.ROOT_ENDPOINT, params=params)
-        return response
+        return self.api_utils.get(self.ROOT_ENDPOINT, params=params)
 
     def post_grade(self, data: dict) -> requests.Response:
         return self.api_utils.post(self.ROOT_ENDPOINT, data=data)
@@ -20,7 +18,6 @@ class GradeHelper(BaseHelper):
         teacher_id: int | None = None,
         group_id: int | None = None,
     ) -> requests.Response:
-
         params = {}
         if student_id is not None:
             params["student_id"] = student_id
@@ -28,13 +25,11 @@ class GradeHelper(BaseHelper):
             params["teacher_id"] = teacher_id
         if group_id is not None:
             params["group_id"] = group_id
-        response = self.api_utils.get(f"{self.ROOT_ENDPOINT}stats/", params=params)
-        return response
+
+        return self.api_utils.get(self.STATS_ENDPOINT, params=params)
 
     def put_grade(self, grade_id: int, json: dict) -> requests.Response:
-        response = self.api_utils.put(f"{self.ROOT_ENDPOINT}{grade_id}/", json=json)
-        return response
+        return self.api_utils.put(f"{self.ROOT_ENDPOINT}{grade_id}/", json=json)
 
     def delete_grade(self, grade_id: int) -> requests.Response:
-        response = self.api_utils.delete(f"{self.ROOT_ENDPOINT}{grade_id}/")
-        return response
+        return self.api_utils.delete(f"{self.ROOT_ENDPOINT}{grade_id}/")

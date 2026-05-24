@@ -128,5 +128,5 @@ def temp_teacher(university_api_utils_admin):
     yield teacher
     try:
         service.delete_teacher(teacher.id)
-    except Exception as e:
-        Logger.info(f"Teacher {teacher.id} cannot be deleted (possibly has grades)")
+    except Exception:
+        Logger.error(f"Cleanup failed for teacher {teacher.id}")

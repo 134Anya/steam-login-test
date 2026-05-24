@@ -4,7 +4,7 @@ from services.university.models.base_grade import BaseGrade, MIN_GRADE, MAX_GRAD
 
 
 class GradeResponse(BaseGrade):
-    id: int
+    id: int = Field(...)
 
 
 class GradeStatsResponse(BaseModel):

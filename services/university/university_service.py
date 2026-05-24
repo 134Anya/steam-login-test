@@ -1,4 +1,5 @@
 from services.general.base_service import BaseService
+from services.general.models.success_response import SuccessResponse
 from services.university.helpers.grade_helper import GradeHelper
 from services.university.helpers.group_helper import GroupHelper
 from services.university.helpers.student_helper import StudentHelper
@@ -43,8 +44,11 @@ class UniversityService(BaseService):
         response = self.group_helper.get_groups()
         return [GroupResponse(**item) for item in response.json()]
 
-    def delete_group(self, group_id: int) -> None:
-        self.group_helper.delete_group(group_id)
+    def delete_group(self, group_id: int) -> SuccessResponse:
+        response = self.group_helper.delete_group(group_id)
+        if response.status_code == 200 and response.text:
+            return SuccessResponse(**response.json())
+        return None
 
     def create_student(self, student_request: StudentRequest) -> StudentResponse:
         response = self.student_helper.post_student(json=student_request.model_dump())
@@ -66,8 +70,11 @@ class UniversityService(BaseService):
         response = self.student_helper.get_students()
         return [StudentResponse(**item) for item in response.json()]
 
-    def delete_student(self, student_id: int) -> None:
-        self.student_helper.delete_student(student_id)
+    def delete_student(self, student_id: int) -> SuccessResponse:
+        response = self.student_helper.delete_student(student_id)
+        if response.status_code == 200 and response.text:
+            return SuccessResponse(**response.json())
+        return None
 
     def create_teacher(self, teacher_request: TeacherRequest) -> TeacherResponse:
         response = self.teacher_helper.post_teachers(json=teacher_request.model_dump())
@@ -89,8 +96,11 @@ class UniversityService(BaseService):
         response = self.teacher_helper.get_teachers()
         return [TeacherResponse(**item) for item in response.json()]
 
-    def delete_teacher(self, teacher_id: int) -> None:
-        self.teacher_helper.delete_teachers(teacher_id)
+    def delete_teacher(self, teacher_id: int) -> SuccessResponse:
+        response = self.teacher_helper.delete_teachers(teacher_id)
+        if response.status_code == 200 and response.text:
+            return SuccessResponse(**response.json())
+        return None
 
     def create_grade(self, grade_request: GradeRequest) -> GradeResponse:
         response = self.grade_helper.post_grade(data=grade_request.model_dump())
@@ -114,5 +124,8 @@ class UniversityService(BaseService):
         response = self.grade_helper.get_grades()
         return [GradeResponse(**item) for item in response.json()]
 
-    def delete_grade(self, grade_id: int) -> None:
-        self.grade_helper.delete_grade(grade_id)
+    def delete_grade(self, grade_id: int) -> SuccessResponse:
+        response = self.grade_helper.delete_grade(grade_id)
+        if response.status_code == 200 and response.text:
+            return SuccessResponse(**response.json())
+        return None

@@ -1,6 +1,6 @@
 from pydantic import BaseModel, ConfigDict, Field
 
-MIN_GRADE = 1
+MIN_GRADE = 0
 MAX_GRADE = 5
 
 
