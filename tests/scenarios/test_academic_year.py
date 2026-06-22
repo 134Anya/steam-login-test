@@ -24,17 +24,9 @@ class TestGradeStats:
         target_student = service.create_student(payload)
 
         for val in [5, 4, 5]:
-            service.create_grade(
-                GradeRequest(
-                    student_id=target_student.id, teacher_id=temp_teacher.id, grade=val
-                )
-            )
+            service.create_grade(GradeRequest(student_id=target_student.id, teacher_id=temp_teacher.id, grade=val))
 
-        service.create_grade(
-            GradeRequest(
-                student_id=temp_student.id, teacher_id=temp_teacher.id, grade=2
-            )
-        )
+        service.create_grade(GradeRequest(student_id=temp_student.id, teacher_id=temp_teacher.id, grade=2))
 
         yield service, target_student.id
         service.delete_student(target_student.id)
@@ -42,16 +34,12 @@ class TestGradeStats:
     def test_student_stats_count(self, stats_setup):
         service, student_id = stats_setup
         stats = service.get_grade_stats(student_id=student_id)
-        assert stats.count == 3, (
-            f"Wrong grades number. Expected 3, but got {stats.count}"
-        )
+        assert stats.count == 3, f"Wrong grades number. Expected 3, but got {stats.count}"
 
     def test_student_stats_avg(self, stats_setup):
         service, student_id = stats_setup
         stats = service.get_grade_stats(student_id=student_id)
-        assert stats.avg == pytest.approx(4.67, abs=0.01), (
-            f"Average score mismatch! Expected 4.67, got {stats.avg}"
-        )
+        assert stats.avg == pytest.approx(4.67, abs=0.01), f"Average score mismatch! Expected 4.67, got {stats.avg}"
 
     def test_student_stats_min(self, stats_setup):
         service, student_id = stats_setup

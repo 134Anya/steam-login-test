@@ -9,6 +9,4 @@ class BaseGrade(BaseModel):
 
     student_id: int
     teacher_id: int
-    grade: int = Field(
-        ge=MIN_GRADE, le=MAX_GRADE, description=f"Оценка от {MIN_GRADE} до {MAX_GRADE}"
-    )
+    grade: int = Field(ge=MIN_GRADE, le=MAX_GRADE, description=f"Оценка от {MIN_GRADE} до {MAX_GRADE}")

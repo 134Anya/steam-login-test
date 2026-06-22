@@ -9,7 +9,8 @@ class GradeResponse(BaseGrade):
 
 class GradeStatsResponse(BaseModel):
     model_config = ConfigDict(extra="forbid")
+
     count: int = Field(..., ge=0)
-    min: int | None = Field(None, ge=MIN_GRADE, le=MAX_GRADE)
-    max: int | None = Field(None, ge=MIN_GRADE, le=MAX_GRADE)
-    avg: float | None = Field(None, ge=float(MIN_GRADE), le=float(MAX_GRADE))
+    min: int | None = Field(..., ge=MIN_GRADE, le=MAX_GRADE)
+    max: int | None = Field(..., ge=MIN_GRADE, le=MAX_GRADE)
+    avg: float | None = Field(..., ge=float(MIN_GRADE), le=float(MAX_GRADE))

@@ -48,9 +48,7 @@ class TestStudentContract:
         response = helper.get_students()
         assert response.status_code == 200, f"Expected 200, got {response.status_code}"
 
-    def test_create_student_without_lastname_negative(
-        self, university_api_utils_admin, temp_group
-    ):
+    def test_create_student_without_lastname_negative(self, university_api_utils_admin, temp_group):
         helper = StudentHelper(api_utils=university_api_utils_admin)
         payload = {"first_name": "NoLast", "group_id": temp_group.id}
         response = helper.post_student(json=payload)

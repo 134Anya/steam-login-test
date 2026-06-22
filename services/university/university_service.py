@@ -31,9 +31,7 @@ class UniversityService(BaseService):
         return GroupResponse(**response.json())
 
     def update_group(self, group_id: int, group_request: GroupRequest) -> GroupResponse:
-        response = self.group_helper.put_group(
-            group_id=group_id, json=group_request.model_dump()
-        )
+        response = self.group_helper.put_group(group_id=group_id, json=group_request.model_dump())
         return GroupResponse(**response.json())
 
     def get_group(self, group_id: int) -> GroupResponse:
@@ -54,12 +52,8 @@ class UniversityService(BaseService):
         response = self.student_helper.post_student(json=student_request.model_dump())
         return StudentResponse(**response.json())
 
-    def update_student(
-        self, student_id: int, student_request: StudentRequest
-    ) -> StudentResponse:
-        response = self.student_helper.put_student(
-            student_id=student_id, json=student_request.model_dump()
-        )
+    def update_student(self, student_id: int, student_request: StudentRequest) -> StudentResponse:
+        response = self.student_helper.put_student(student_id=student_id, json=student_request.model_dump())
         return StudentResponse(**response.json())
 
     def get_student(self, student_id: int) -> StudentResponse:
@@ -80,12 +74,8 @@ class UniversityService(BaseService):
         response = self.teacher_helper.post_teachers(json=teacher_request.model_dump())
         return TeacherResponse(**response.json())
 
-    def update_teacher(
-        self, teacher_id: int, teacher_request: TeacherRequest
-    ) -> TeacherResponse:
-        response = self.teacher_helper.put_teachers(
-            teacher_id=teacher_id, json=teacher_request.model_dump()
-        )
+    def update_teacher(self, teacher_id: int, teacher_request: TeacherRequest) -> TeacherResponse:
+        response = self.teacher_helper.put_teachers(teacher_id=teacher_id, json=teacher_request.model_dump())
         return TeacherResponse(**response.json())
 
     def get_teacher(self, teacher_id: int) -> TeacherResponse:
@@ -106,18 +96,12 @@ class UniversityService(BaseService):
         response = self.grade_helper.post_grade(data=grade_request.model_dump())
         return GradeResponse(**response.json())
 
-    def get_grade_stats(
-        self, student_id: int | None = None, teacher_id: int | None = None
-    ) -> GradeStatsResponse:
-        response = self.grade_helper.get_grade_stats(
-            student_id=student_id, teacher_id=teacher_id
-        )
+    def get_grade_stats(self, student_id: int | None = None, teacher_id: int | None = None) -> GradeStatsResponse:
+        response = self.grade_helper.get_grade_stats(student_id=student_id, teacher_id=teacher_id)
         return GradeStatsResponse(**response.json())
 
     def update_grade(self, grade_id: int, grade_request: GradeRequest) -> GradeResponse:
-        response = self.grade_helper.put_grade(
-            grade_id=grade_id, json=grade_request.model_dump()
-        )
+        response = self.grade_helper.put_grade(grade_id=grade_id, json=grade_request.model_dump())
         return GradeResponse(**response.json())
 
     def get_grades(self) -> list[GradeResponse]:

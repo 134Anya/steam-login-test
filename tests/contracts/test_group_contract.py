@@ -43,11 +43,7 @@ class TestGroupContract:
         assert response.status_code == 404, f"Expected 404, got {response.status_code}"
 
     @pytest.mark.xfail(reason="Should be 409.")
-    def test_delete_group_with_active_student_contract(
-        self, university_api_utils_admin, temp_group, temp_student
-    ):
+    def test_delete_group_with_active_student_contract(self, university_api_utils_admin, temp_group, temp_student):
         group_helper = GroupHelper(api_utils=university_api_utils_admin)
         response = group_helper.delete_group(temp_group.id)
-        assert response.status_code == 409, (
-            f"Expected 409 Conflict, but got {response.status_code}. "
-        )
+        assert response.status_code == 409, f"Expected 409 Conflict, but got {response.status_code}. "
