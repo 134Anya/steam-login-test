@@ -36,7 +36,7 @@ jobs:
           echo "UNIVERSITY_SERVICE_API_URL=${{ secrets.UNIVERSITY_SERVICE_API_URL }}" >> .env
 
       - name: Start services with Docker Compose
-        run: docker-compose up -d
+        run: docker compose up -d
 
       - name: Build and Run Tests
         run: |
