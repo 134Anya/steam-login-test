@@ -41,7 +41,8 @@ jobs:
       - name: Build and Run Tests
         run: |
           docker build -t api-tests .
-          docker run --network host api-tests pytest --alluredir=allure-results
+          docker run --network host -v ${{ github.workspace }}/allure-results:/app/allure-results api-tests pytest --alluredir=allure-results
+
 
       - name: Build Allure Report
         uses: simple-elf/allure-report-action@master
