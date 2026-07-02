@@ -1,4 +1,13 @@
-# created by virtualenv automatically
+
+.venv/
+__pycache__/
+.pytest_cache/
+.env
+*.pyc
+logs/
+.idea/
+
+
 .venv/
 venv/
 env/
@@ -10,3 +19,4 @@ __pycache__/
 .pytest_cache/
 .DS_Store
 Thumbs.db
+
