@@ -1,0 +1,37 @@
+[2026-07-02 21:43:26,694 - INFO] - Request: curl -H 'User-Agent: python-requests/2.32.5' -H 'Accept-Encoding: gzip, deflate' -H 'Accept: */*' -H 'Connection: keep-alive' -H 'Authorization: Bearer eyJhbGciOiJSUzI1NiIsInR5cCI6IkpXVCJ9.eyJzdWIiOjEsInVzZXJuYW1lIjoiZ2FicmllbDc5IiwiZXhwIjoxNzgzMDM1ODA0LCJpYXQiOjE3ODMwMjg2MDR9.C8feZvzXy4bSYZRx8nrwsrZGS4LUBS2FZXysjXfg_XlsvX7Mi-81VtgQQO7RzbCeaQdUB4H2uK01qJb7xURPw8Dxmo7ZtgzaWSN_jm02zQboL4Q4NH2u06R9CZaQxFFbCe6mk0aYxrf7SZh671P90M4EIHrIOdJ0bXdCw3gh3tjYZrcmnmuM5R6q6bK1AVL-ExQXDzcqcAuep6U8sEJLxNOhjTwA8fZJtqJBYJO_kApaO-nKQZiG8AOEMpvmnObwD5nRTlOPxQZ3kOH5V6b1Aa2Z3sohbP1Bh_zmr6pep9y1ZEbR1vqHX7OVDmYQk-QbEIUy2BSum5Inq5ptlr4Lvg' -H 'Content-Length: 27' -H 'Content-Type: application/json' -d '{"name": "Group-AhkN-5578"}' http://127.0.0.1:8001/groups/
+[2026-07-02 21:43:26,695 - INFO] - Response status code = 201, elapsed_time= '0:00:00.009816'
+{
+  "name": "Group-AhkN-5578",
+  "id": 9
+}
+
+[2026-07-02 21:43:26,746 - INFO] - Request: curl -H 'User-Agent: python-requests/2.32.5' -H 'Accept-Encoding: gzip, deflate' -H 'Accept: */*' -H 'Connection: keep-alive' -H 'Authorization: Bearer eyJhbGciOiJSUzI1NiIsInR5cCI6IkpXVCJ9.eyJzdWIiOjEsInVzZXJuYW1lIjoiZ2FicmllbDc5IiwiZXhwIjoxNzgzMDM1ODA0LCJpYXQiOjE3ODMwMjg2MDR9.C8feZvzXy4bSYZRx8nrwsrZGS4LUBS2FZXysjXfg_XlsvX7Mi-81VtgQQO7RzbCeaQdUB4H2uK01qJb7xURPw8Dxmo7ZtgzaWSN_jm02zQboL4Q4NH2u06R9CZaQxFFbCe6mk0aYxrf7SZh671P90M4EIHrIOdJ0bXdCw3gh3tjYZrcmnmuM5R6q6bK1AVL-ExQXDzcqcAuep6U8sEJLxNOhjTwA8fZJtqJBYJO_kApaO-nKQZiG8AOEMpvmnObwD5nRTlOPxQZ3kOH5V6b1Aa2Z3sohbP1Bh_zmr6pep9y1ZEbR1vqHX7OVDmYQk-QbEIUy2BSum5Inq5ptlr4Lvg' -H 'Content-Length: 147' -H 'Content-Type: application/json' -d '{"first_name": "Thomas", "last_name": "Frank", "email": "pattonmichelle@example.com", "degree": "Bachelor", "phone": "+72810790210", "group_id": 9}' http://127.0.0.1:8001/students/
+[2026-07-02 21:43:26,746 - INFO] - Response status code = 201, elapsed_time= '0:00:00.008874'
+{
+  "first_name": "Thomas",
+  "last_name": "Frank",
+  "email": "pattonmichelle@example.com",
+  "degree": "Bachelor",
+  "phone": "+72810790210",
+  "group_id": 9,
+  "id": 5
+}
+
+[2026-07-02 21:43:26,796 - INFO] - Request: curl -X DELETE -H 'User-Agent: python-requests/2.32.5' -H 'Accept-Encoding: gzip, deflate' -H 'Accept: */*' -H 'Connection: keep-alive' -H 'Authorization: Bearer eyJhbGciOiJSUzI1NiIsInR5cCI6IkpXVCJ9.eyJzdWIiOjEsInVzZXJuYW1lIjoiZ2FicmllbDc5IiwiZXhwIjoxNzgzMDM1ODA0LCJpYXQiOjE3ODMwMjg2MDR9.C8feZvzXy4bSYZRx8nrwsrZGS4LUBS2FZXysjXfg_XlsvX7Mi-81VtgQQO7RzbCeaQdUB4H2uK01qJb7xURPw8Dxmo7ZtgzaWSN_jm02zQboL4Q4NH2u06R9CZaQxFFbCe6mk0aYxrf7SZh671P90M4EIHrIOdJ0bXdCw3gh3tjYZrcmnmuM5R6q6bK1AVL-ExQXDzcqcAuep6U8sEJLxNOhjTwA8fZJtqJBYJO_kApaO-nKQZiG8AOEMpvmnObwD5nRTlOPxQZ3kOH5V6b1Aa2Z3sohbP1Bh_zmr6pep9y1ZEbR1vqHX7OVDmYQk-QbEIUy2BSum5Inq5ptlr4Lvg' -H 'Content-Length: 0' http://127.0.0.1:8001/students/5/
+[2026-07-02 21:43:26,797 - INFO] - Response status code = 200, elapsed_time= '0:00:00.009051'
+{
+  "detail": "Student deleted"
+}
+
+[2026-07-02 21:43:26,844 - INFO] - Request: curl -X DELETE -H 'User-Agent: python-requests/2.32.5' -H 'Accept-Encoding: gzip, deflate' -H 'Accept: */*' -H 'Connection: keep-alive' -H 'Authorization: Bearer eyJhbGciOiJSUzI1NiIsInR5cCI6IkpXVCJ9.eyJzdWIiOjEsInVzZXJuYW1lIjoiZ2FicmllbDc5IiwiZXhwIjoxNzgzMDM1ODA0LCJpYXQiOjE3ODMwMjg2MDR9.C8feZvzXy4bSYZRx8nrwsrZGS4LUBS2FZXysjXfg_XlsvX7Mi-81VtgQQO7RzbCeaQdUB4H2uK01qJb7xURPw8Dxmo7ZtgzaWSN_jm02zQboL4Q4NH2u06R9CZaQxFFbCe6mk0aYxrf7SZh671P90M4EIHrIOdJ0bXdCw3gh3tjYZrcmnmuM5R6q6bK1AVL-ExQXDzcqcAuep6U8sEJLxNOhjTwA8fZJtqJBYJO_kApaO-nKQZiG8AOEMpvmnObwD5nRTlOPxQZ3kOH5V6b1Aa2Z3sohbP1Bh_zmr6pep9y1ZEbR1vqHX7OVDmYQk-QbEIUy2BSum5Inq5ptlr4Lvg' -H 'Content-Length: 0' http://127.0.0.1:8001/students/5/
+[2026-07-02 21:43:26,845 - INFO] - Response status code = 404, elapsed_time= '0:00:00.006799'
+{
+  "detail": "Student not found"
+}
+
+[2026-07-02 21:43:26,892 - INFO] - Request: curl -X DELETE -H 'User-Agent: python-requests/2.32.5' -H 'Accept-Encoding: gzip, deflate' -H 'Accept: */*' -H 'Connection: keep-alive' -H 'Authorization: Bearer eyJhbGciOiJSUzI1NiIsInR5cCI6IkpXVCJ9.eyJzdWIiOjEsInVzZXJuYW1lIjoiZ2FicmllbDc5IiwiZXhwIjoxNzgzMDM1ODA0LCJpYXQiOjE3ODMwMjg2MDR9.C8feZvzXy4bSYZRx8nrwsrZGS4LUBS2FZXysjXfg_XlsvX7Mi-81VtgQQO7RzbCeaQdUB4H2uK01qJb7xURPw8Dxmo7ZtgzaWSN_jm02zQboL4Q4NH2u06R9CZaQxFFbCe6mk0aYxrf7SZh671P90M4EIHrIOdJ0bXdCw3gh3tjYZrcmnmuM5R6q6bK1AVL-ExQXDzcqcAuep6U8sEJLxNOhjTwA8fZJtqJBYJO_kApaO-nKQZiG8AOEMpvmnObwD5nRTlOPxQZ3kOH5V6b1Aa2Z3sohbP1Bh_zmr6pep9y1ZEbR1vqHX7OVDmYQk-QbEIUy2BSum5Inq5ptlr4Lvg' -H 'Content-Length: 0' http://127.0.0.1:8001/groups/9/
+[2026-07-02 21:43:26,893 - INFO] - Response status code = 200, elapsed_time= '0:00:00.007024'
+{
+  "detail": "Group deleted"
+}
+

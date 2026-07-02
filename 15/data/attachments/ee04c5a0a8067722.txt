@@ -1,0 +1,22 @@
+[2026-07-02 21:43:24,372 - INFO] - Auth API is READY!
+[2026-07-02 21:43:24,375 - INFO] - University API is READY!
+[2026-07-02 21:43:24,682 - INFO] - Request: curl -H 'User-Agent: python-requests/2.32.5' -H 'Accept-Encoding: gzip, deflate' -H 'Accept: */*' -H 'Connection: keep-alive' -H 'Content-Length: 124' -H 'Content-Type: application/x-www-form-urlencoded' -d 'username=gabriel79&password=kS%29CH2aU%28Xv2hoFn%40KYb&password_repeat=kS%29CH2aU%28Xv2hoFn%40KYb&email=nbrown%40example.org' http://127.0.0.1:8000/auth/register/
+[2026-07-02 21:43:24,682 - INFO] - Response status code = 201, elapsed_time= '0:00:00.299855'
+{
+  "detail": "User registered"
+}
+
+[2026-07-02 21:43:25,040 - INFO] - Request: curl -H 'User-Agent: python-requests/2.32.5' -H 'Accept-Encoding: gzip, deflate' -H 'Accept: */*' -H 'Connection: keep-alive' -H 'Content-Length: 54' -H 'Content-Type: application/x-www-form-urlencoded' -d 'username=gabriel79&password=kS%29CH2aU%28Xv2hoFn%40KYb' http://127.0.0.1:8000/auth/login/
+[2026-07-02 21:43:25,040 - INFO] - Response status code = 200, elapsed_time= '0:00:00.317098'
+{
+  "access_token": "eyJhbGciOiJSUzI1NiIsInR5cCI6IkpXVCJ9.eyJzdWIiOjEsInVzZXJuYW1lIjoiZ2FicmllbDc5IiwiZXhwIjoxNzgzMDM1ODA0LCJpYXQiOjE3ODMwMjg2MDR9.C8feZvzXy4bSYZRx8nrwsrZGS4LUBS2FZXysjXfg_XlsvX7Mi-81VtgQQO7RzbCeaQdUB4H2uK01qJb7xURPw8Dxmo7ZtgzaWSN_jm02zQboL4Q4NH2u06R9CZaQxFFbCe6mk0aYxrf7SZh671P90M4EIHrIOdJ0bXdCw3gh3tjYZrcmnmuM5R6q6bK1AVL-ExQXDzcqcAuep6U8sEJLxNOhjTwA8fZJtqJBYJO_kApaO-nKQZiG8AOEMpvmnObwD5nRTlOPxQZ3kOH5V6b1Aa2Z3sohbP1Bh_zmr6pep9y1ZEbR1vqHX7OVDmYQk-QbEIUy2BSum5Inq5ptlr4Lvg",
+  "token_type": "Bearer"
+}
+
+[2026-07-02 21:43:25,080 - INFO] - Request: curl -H 'User-Agent: python-requests/2.32.5' -H 'Accept-Encoding: gzip, deflate' -H 'Accept: */*' -H 'Connection: keep-alive' -H 'Authorization: Bearer eyJhbGciOiJSUzI1NiIsInR5cCI6IkpXVCJ9.eyJzdWIiOjEsInVzZXJuYW1lIjoiZ2FicmllbDc5IiwiZXhwIjoxNzgzMDM1ODA0LCJpYXQiOjE3ODMwMjg2MDR9.C8feZvzXy4bSYZRx8nrwsrZGS4LUBS2FZXysjXfg_XlsvX7Mi-81VtgQQO7RzbCeaQdUB4H2uK01qJb7xURPw8Dxmo7ZtgzaWSN_jm02zQboL4Q4NH2u06R9CZaQxFFbCe6mk0aYxrf7SZh671P90M4EIHrIOdJ0bXdCw3gh3tjYZrcmnmuM5R6q6bK1AVL-ExQXDzcqcAuep6U8sEJLxNOhjTwA8fZJtqJBYJO_kApaO-nKQZiG8AOEMpvmnObwD5nRTlOPxQZ3kOH5V6b1Aa2Z3sohbP1Bh_zmr6pep9y1ZEbR1vqHX7OVDmYQk-QbEIUy2BSum5Inq5ptlr4Lvg' -H 'Content-Length: 17' -H 'Content-Type: application/json' -d '{"name": "these"}' http://127.0.0.1:8001/groups/
+[2026-07-02 21:43:25,080 - INFO] - Response status code = 201, elapsed_time= '0:00:00.038289'
+{
+  "name": "these",
+  "id": 1
+}
+

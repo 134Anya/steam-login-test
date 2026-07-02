@@ -1,0 +1,97 @@
+INFO     Logger:logger.py:33 Request: curl -H 'User-Agent: python-requests/2.32.5' -H 'Accept-Encoding: gzip, deflate' -H 'Accept: */*' -H 'Connection: keep-alive' -H 'Authorization: Bearer eyJhbGciOiJSUzI1NiIsInR5cCI6IkpXVCJ9.eyJzdWIiOjEsInVzZXJuYW1lIjoiZ2FicmllbDc5IiwiZXhwIjoxNzgzMDM1ODA0LCJpYXQiOjE3ODMwMjg2MDR9.C8feZvzXy4bSYZRx8nrwsrZGS4LUBS2FZXysjXfg_XlsvX7Mi-81VtgQQO7RzbCeaQdUB4H2uK01qJb7xURPw8Dxmo7ZtgzaWSN_jm02zQboL4Q4NH2u06R9CZaQxFFbCe6mk0aYxrf7SZh671P90M4EIHrIOdJ0bXdCw3gh3tjYZrcmnmuM5R6q6bK1AVL-ExQXDzcqcAuep6U8sEJLxNOhjTwA8fZJtqJBYJO_kApaO-nKQZiG8AOEMpvmnObwD5nRTlOPxQZ3kOH5V6b1Aa2Z3sohbP1Bh_zmr6pep9y1ZEbR1vqHX7OVDmYQk-QbEIUy2BSum5Inq5ptlr4Lvg' -H 'Content-Length: 27' -H 'Content-Type: application/json' -d '{"name": "Group-GCgj-5219"}' http://127.0.0.1:8001/groups/
+INFO     Logger:logger.py:33 Response status code = 201, elapsed_time= '0:00:00.008035'
+{
+  "name": "Group-GCgj-5219",
+  "id": 12
+}
+
+INFO     Logger:logger.py:33 Request: curl -H 'User-Agent: python-requests/2.32.5' -H 'Accept-Encoding: gzip, deflate' -H 'Accept: */*' -H 'Connection: keep-alive' -H 'Authorization: Bearer eyJhbGciOiJSUzI1NiIsInR5cCI6IkpXVCJ9.eyJzdWIiOjEsInVzZXJuYW1lIjoiZ2FicmllbDc5IiwiZXhwIjoxNzgzMDM1ODA0LCJpYXQiOjE3ODMwMjg2MDR9.C8feZvzXy4bSYZRx8nrwsrZGS4LUBS2FZXysjXfg_XlsvX7Mi-81VtgQQO7RzbCeaQdUB4H2uK01qJb7xURPw8Dxmo7ZtgzaWSN_jm02zQboL4Q4NH2u06R9CZaQxFFbCe6mk0aYxrf7SZh671P90M4EIHrIOdJ0bXdCw3gh3tjYZrcmnmuM5R6q6bK1AVL-ExQXDzcqcAuep6U8sEJLxNOhjTwA8fZJtqJBYJO_kApaO-nKQZiG8AOEMpvmnObwD5nRTlOPxQZ3kOH5V6b1Aa2Z3sohbP1Bh_zmr6pep9y1ZEbR1vqHX7OVDmYQk-QbEIUy2BSum5Inq5ptlr4Lvg' -H 'Content-Length: 142' -H 'Content-Type: application/json' -d '{"first_name": "Betty", "last_name": "Woodward", "email": "dsmith@example.net", "degree": "Bachelor", "phone": "+70986774632", "group_id": 12}' http://127.0.0.1:8001/students/
+INFO     Logger:logger.py:33 Response status code = 201, elapsed_time= '0:00:00.011264'
+{
+  "first_name": "Betty",
+  "last_name": "Woodward",
+  "email": "dsmith@example.net",
+  "degree": "Bachelor",
+  "phone": "+70986774632",
+  "group_id": 12,
+  "id": 8
+}
+
+INFO     Logger:logger.py:33 Request: curl -H 'User-Agent: python-requests/2.32.5' -H 'Accept-Encoding: gzip, deflate' -H 'Accept: */*' -H 'Connection: keep-alive' -H 'Authorization: Bearer eyJhbGciOiJSUzI1NiIsInR5cCI6IkpXVCJ9.eyJzdWIiOjEsInVzZXJuYW1lIjoiZ2FicmllbDc5IiwiZXhwIjoxNzgzMDM1ODA0LCJpYXQiOjE3ODMwMjg2MDR9.C8feZvzXy4bSYZRx8nrwsrZGS4LUBS2FZXysjXfg_XlsvX7Mi-81VtgQQO7RzbCeaQdUB4H2uK01qJb7xURPw8Dxmo7ZtgzaWSN_jm02zQboL4Q4NH2u06R9CZaQxFFbCe6mk0aYxrf7SZh671P90M4EIHrIOdJ0bXdCw3gh3tjYZrcmnmuM5R6q6bK1AVL-ExQXDzcqcAuep6U8sEJLxNOhjTwA8fZJtqJBYJO_kApaO-nKQZiG8AOEMpvmnObwD5nRTlOPxQZ3kOH5V6b1Aa2Z3sohbP1Bh_zmr6pep9y1ZEbR1vqHX7OVDmYQk-QbEIUy2BSum5Inq5ptlr4Lvg' -H 'Content-Length: 68' -H 'Content-Type: application/json' -d '{"first_name": "Thomas", "last_name": "Payne", "subject": "Physics"}' http://127.0.0.1:8001/teachers/
+INFO     Logger:logger.py:33 Response status code = 201, elapsed_time= '0:00:00.008548'
+{
+  "first_name": "Thomas",
+  "last_name": "Payne",
+  "subject": "Physics",
+  "id": 2
+}
+
+INFO     Logger:logger.py:33 Request: curl -H 'User-Agent: python-requests/2.32.5' -H 'Accept-Encoding: gzip, deflate' -H 'Accept: */*' -H 'Connection: keep-alive' -H 'Authorization: Bearer eyJhbGciOiJSUzI1NiIsInR5cCI6IkpXVCJ9.eyJzdWIiOjEsInVzZXJuYW1lIjoiZ2FicmllbDc5IiwiZXhwIjoxNzgzMDM1ODA0LCJpYXQiOjE3ODMwMjg2MDR9.C8feZvzXy4bSYZRx8nrwsrZGS4LUBS2FZXysjXfg_XlsvX7Mi-81VtgQQO7RzbCeaQdUB4H2uK01qJb7xURPw8Dxmo7ZtgzaWSN_jm02zQboL4Q4NH2u06R9CZaQxFFbCe6mk0aYxrf7SZh671P90M4EIHrIOdJ0bXdCw3gh3tjYZrcmnmuM5R6q6bK1AVL-ExQXDzcqcAuep6U8sEJLxNOhjTwA8fZJtqJBYJO_kApaO-nKQZiG8AOEMpvmnObwD5nRTlOPxQZ3kOH5V6b1Aa2Z3sohbP1Bh_zmr6pep9y1ZEbR1vqHX7OVDmYQk-QbEIUy2BSum5Inq5ptlr4Lvg' -H 'Content-Length: 142' -H 'Content-Type: application/json' -d '{"first_name": "Target", "last_name": "Student", "email": "cbrown@example.org", "degree": "Bachelor", "phone": "+71202990540", "group_id": 12}' http://127.0.0.1:8001/students/
+INFO     Logger:logger.py:33 Response status code = 201, elapsed_time= '0:00:00.009178'
+{
+  "first_name": "Target",
+  "last_name": "Student",
+  "email": "cbrown@example.org",
+  "degree": "Bachelor",
+  "phone": "+71202990540",
+  "group_id": 12,
+  "id": 9
+}
+
+INFO     Logger:logger.py:33 Request: curl -H 'User-Agent: python-requests/2.32.5' -H 'Accept-Encoding: gzip, deflate' -H 'Accept: */*' -H 'Connection: keep-alive' -H 'Authorization: Bearer eyJhbGciOiJSUzI1NiIsInR5cCI6IkpXVCJ9.eyJzdWIiOjEsInVzZXJuYW1lIjoiZ2FicmllbDc5IiwiZXhwIjoxNzgzMDM1ODA0LCJpYXQiOjE3ODMwMjg2MDR9.C8feZvzXy4bSYZRx8nrwsrZGS4LUBS2FZXysjXfg_XlsvX7Mi-81VtgQQO7RzbCeaQdUB4H2uK01qJb7xURPw8Dxmo7ZtgzaWSN_jm02zQboL4Q4NH2u06R9CZaQxFFbCe6mk0aYxrf7SZh671P90M4EIHrIOdJ0bXdCw3gh3tjYZrcmnmuM5R6q6bK1AVL-ExQXDzcqcAuep6U8sEJLxNOhjTwA8fZJtqJBYJO_kApaO-nKQZiG8AOEMpvmnObwD5nRTlOPxQZ3kOH5V6b1Aa2Z3sohbP1Bh_zmr6pep9y1ZEbR1vqHX7OVDmYQk-QbEIUy2BSum5Inq5ptlr4Lvg' -H 'Content-Length: 33' -H 'Content-Type: application/x-www-form-urlencoded' -d 'student_id=9&teacher_id=2&grade=5' http://127.0.0.1:8001/grades/
+INFO     Logger:logger.py:33 Response status code = 201, elapsed_time= '0:00:00.008545'
+{
+  "teacher_id": 2,
+  "student_id": 9,
+  "grade": 5,
+  "id": 5
+}
+
+INFO     Logger:logger.py:33 Request: curl -H 'User-Agent: python-requests/2.32.5' -H 'Accept-Encoding: gzip, deflate' -H 'Accept: */*' -H 'Connection: keep-alive' -H 'Authorization: Bearer eyJhbGciOiJSUzI1NiIsInR5cCI6IkpXVCJ9.eyJzdWIiOjEsInVzZXJuYW1lIjoiZ2FicmllbDc5IiwiZXhwIjoxNzgzMDM1ODA0LCJpYXQiOjE3ODMwMjg2MDR9.C8feZvzXy4bSYZRx8nrwsrZGS4LUBS2FZXysjXfg_XlsvX7Mi-81VtgQQO7RzbCeaQdUB4H2uK01qJb7xURPw8Dxmo7ZtgzaWSN_jm02zQboL4Q4NH2u06R9CZaQxFFbCe6mk0aYxrf7SZh671P90M4EIHrIOdJ0bXdCw3gh3tjYZrcmnmuM5R6q6bK1AVL-ExQXDzcqcAuep6U8sEJLxNOhjTwA8fZJtqJBYJO_kApaO-nKQZiG8AOEMpvmnObwD5nRTlOPxQZ3kOH5V6b1Aa2Z3sohbP1Bh_zmr6pep9y1ZEbR1vqHX7OVDmYQk-QbEIUy2BSum5Inq5ptlr4Lvg' -H 'Content-Length: 33' -H 'Content-Type: application/x-www-form-urlencoded' -d 'student_id=9&teacher_id=2&grade=4' http://127.0.0.1:8001/grades/
+INFO     Logger:logger.py:33 Response status code = 201, elapsed_time= '0:00:00.008411'
+{
+  "teacher_id": 2,
+  "student_id": 9,
+  "grade": 4,
+  "id": 6
+}
+
+INFO     Logger:logger.py:33 Request: curl -H 'User-Agent: python-requests/2.32.5' -H 'Accept-Encoding: gzip, deflate' -H 'Accept: */*' -H 'Connection: keep-alive' -H 'Authorization: Bearer eyJhbGciOiJSUzI1NiIsInR5cCI6IkpXVCJ9.eyJzdWIiOjEsInVzZXJuYW1lIjoiZ2FicmllbDc5IiwiZXhwIjoxNzgzMDM1ODA0LCJpYXQiOjE3ODMwMjg2MDR9.C8feZvzXy4bSYZRx8nrwsrZGS4LUBS2FZXysjXfg_XlsvX7Mi-81VtgQQO7RzbCeaQdUB4H2uK01qJb7xURPw8Dxmo7ZtgzaWSN_jm02zQboL4Q4NH2u06R9CZaQxFFbCe6mk0aYxrf7SZh671P90M4EIHrIOdJ0bXdCw3gh3tjYZrcmnmuM5R6q6bK1AVL-ExQXDzcqcAuep6U8sEJLxNOhjTwA8fZJtqJBYJO_kApaO-nKQZiG8AOEMpvmnObwD5nRTlOPxQZ3kOH5V6b1Aa2Z3sohbP1Bh_zmr6pep9y1ZEbR1vqHX7OVDmYQk-QbEIUy2BSum5Inq5ptlr4Lvg' -H 'Content-Length: 33' -H 'Content-Type: application/x-www-form-urlencoded' -d 'student_id=9&teacher_id=2&grade=5' http://127.0.0.1:8001/grades/
+INFO     Logger:logger.py:33 Response status code = 201, elapsed_time= '0:00:00.008666'
+{
+  "teacher_id": 2,
+  "student_id": 9,
+  "grade": 5,
+  "id": 7
+}
+
+INFO     Logger:logger.py:33 Request: curl -H 'User-Agent: python-requests/2.32.5' -H 'Accept-Encoding: gzip, deflate' -H 'Accept: */*' -H 'Connection: keep-alive' -H 'Authorization: Bearer eyJhbGciOiJSUzI1NiIsInR5cCI6IkpXVCJ9.eyJzdWIiOjEsInVzZXJuYW1lIjoiZ2FicmllbDc5IiwiZXhwIjoxNzgzMDM1ODA0LCJpYXQiOjE3ODMwMjg2MDR9.C8feZvzXy4bSYZRx8nrwsrZGS4LUBS2FZXysjXfg_XlsvX7Mi-81VtgQQO7RzbCeaQdUB4H2uK01qJb7xURPw8Dxmo7ZtgzaWSN_jm02zQboL4Q4NH2u06R9CZaQxFFbCe6mk0aYxrf7SZh671P90M4EIHrIOdJ0bXdCw3gh3tjYZrcmnmuM5R6q6bK1AVL-ExQXDzcqcAuep6U8sEJLxNOhjTwA8fZJtqJBYJO_kApaO-nKQZiG8AOEMpvmnObwD5nRTlOPxQZ3kOH5V6b1Aa2Z3sohbP1Bh_zmr6pep9y1ZEbR1vqHX7OVDmYQk-QbEIUy2BSum5Inq5ptlr4Lvg' -H 'Content-Length: 33' -H 'Content-Type: application/x-www-form-urlencoded' -d 'student_id=8&teacher_id=2&grade=2' http://127.0.0.1:8001/grades/
+INFO     Logger:logger.py:33 Response status code = 201, elapsed_time= '0:00:00.008323'
+{
+  "teacher_id": 2,
+  "student_id": 8,
+  "grade": 2,
+  "id": 8
+}
+INFO     Logger:logger.py:33 Request: curl -H 'User-Agent: python-requests/2.32.5' -H 'Accept-Encoding: gzip, deflate' -H 'Accept: */*' -H 'Connection: keep-alive' -H 'Authorization: Bearer eyJhbGciOiJSUzI1NiIsInR5cCI6IkpXVCJ9.eyJzdWIiOjEsInVzZXJuYW1lIjoiZ2FicmllbDc5IiwiZXhwIjoxNzgzMDM1ODA0LCJpYXQiOjE3ODMwMjg2MDR9.C8feZvzXy4bSYZRx8nrwsrZGS4LUBS2FZXysjXfg_XlsvX7Mi-81VtgQQO7RzbCeaQdUB4H2uK01qJb7xURPw8Dxmo7ZtgzaWSN_jm02zQboL4Q4NH2u06R9CZaQxFFbCe6mk0aYxrf7SZh671P90M4EIHrIOdJ0bXdCw3gh3tjYZrcmnmuM5R6q6bK1AVL-ExQXDzcqcAuep6U8sEJLxNOhjTwA8fZJtqJBYJO_kApaO-nKQZiG8AOEMpvmnObwD5nRTlOPxQZ3kOH5V6b1Aa2Z3sohbP1Bh_zmr6pep9y1ZEbR1vqHX7OVDmYQk-QbEIUy2BSum5Inq5ptlr4Lvg' 'http://127.0.0.1:8001/grades/stats/?student_id=9'
+INFO     Logger:logger.py:33 Response status code = 200, elapsed_time= '0:00:00.006902'
+{
+  "count": 3,
+  "min": 4,
+  "max": 5,
+  "avg": 4.666666666666667
+}
+INFO     Logger:logger.py:33 Request: curl -X DELETE -H 'User-Agent: python-requests/2.32.5' -H 'Accept-Encoding: gzip, deflate' -H 'Accept: */*' -H 'Connection: keep-alive' -H 'Authorization: Bearer eyJhbGciOiJSUzI1NiIsInR5cCI6IkpXVCJ9.eyJzdWIiOjEsInVzZXJuYW1lIjoiZ2FicmllbDc5IiwiZXhwIjoxNzgzMDM1ODA0LCJpYXQiOjE3ODMwMjg2MDR9.C8feZvzXy4bSYZRx8nrwsrZGS4LUBS2FZXysjXfg_XlsvX7Mi-81VtgQQO7RzbCeaQdUB4H2uK01qJb7xURPw8Dxmo7ZtgzaWSN_jm02zQboL4Q4NH2u06R9CZaQxFFbCe6mk0aYxrf7SZh671P90M4EIHrIOdJ0bXdCw3gh3tjYZrcmnmuM5R6q6bK1AVL-ExQXDzcqcAuep6U8sEJLxNOhjTwA8fZJtqJBYJO_kApaO-nKQZiG8AOEMpvmnObwD5nRTlOPxQZ3kOH5V6b1Aa2Z3sohbP1Bh_zmr6pep9y1ZEbR1vqHX7OVDmYQk-QbEIUy2BSum5Inq5ptlr4Lvg' -H 'Content-Length: 0' http://127.0.0.1:8001/students/9/
+INFO     Logger:logger.py:33 Response status code = 500, elapsed_time= '0:00:00.007567'
+Internal Server Error
+
+INFO     Logger:logger.py:33 Request: curl -X DELETE -H 'User-Agent: python-requests/2.32.5' -H 'Accept-Encoding: gzip, deflate' -H 'Accept: */*' -H 'Connection: keep-alive' -H 'Authorization: Bearer eyJhbGciOiJSUzI1NiIsInR5cCI6IkpXVCJ9.eyJzdWIiOjEsInVzZXJuYW1lIjoiZ2FicmllbDc5IiwiZXhwIjoxNzgzMDM1ODA0LCJpYXQiOjE3ODMwMjg2MDR9.C8feZvzXy4bSYZRx8nrwsrZGS4LUBS2FZXysjXfg_XlsvX7Mi-81VtgQQO7RzbCeaQdUB4H2uK01qJb7xURPw8Dxmo7ZtgzaWSN_jm02zQboL4Q4NH2u06R9CZaQxFFbCe6mk0aYxrf7SZh671P90M4EIHrIOdJ0bXdCw3gh3tjYZrcmnmuM5R6q6bK1AVL-ExQXDzcqcAuep6U8sEJLxNOhjTwA8fZJtqJBYJO_kApaO-nKQZiG8AOEMpvmnObwD5nRTlOPxQZ3kOH5V6b1Aa2Z3sohbP1Bh_zmr6pep9y1ZEbR1vqHX7OVDmYQk-QbEIUy2BSum5Inq5ptlr4Lvg' -H 'Content-Length: 0' http://127.0.0.1:8001/teachers/2/
+INFO     Logger:logger.py:33 Response status code = 500, elapsed_time= '0:00:00.007860'
+Internal Server Error
+
+WARNING  Logger:logger.py:41 Cleanup: Student 8 already deleted
+INFO     Logger:logger.py:33 Request: curl -X DELETE -H 'User-Agent: python-requests/2.32.5' -H 'Accept-Encoding: gzip, deflate' -H 'Accept: */*' -H 'Connection: keep-alive' -H 'Authorization: Bearer eyJhbGciOiJSUzI1NiIsInR5cCI6IkpXVCJ9.eyJzdWIiOjEsInVzZXJuYW1lIjoiZ2FicmllbDc5IiwiZXhwIjoxNzgzMDM1ODA0LCJpYXQiOjE3ODMwMjg2MDR9.C8feZvzXy4bSYZRx8nrwsrZGS4LUBS2FZXysjXfg_XlsvX7Mi-81VtgQQO7RzbCeaQdUB4H2uK01qJb7xURPw8Dxmo7ZtgzaWSN_jm02zQboL4Q4NH2u06R9CZaQxFFbCe6mk0aYxrf7SZh671P90M4EIHrIOdJ0bXdCw3gh3tjYZrcmnmuM5R6q6bK1AVL-ExQXDzcqcAuep6U8sEJLxNOhjTwA8fZJtqJBYJO_kApaO-nKQZiG8AOEMpvmnObwD5nRTlOPxQZ3kOH5V6b1Aa2Z3sohbP1Bh_zmr6pep9y1ZEbR1vqHX7OVDmYQk-QbEIUy2BSum5Inq5ptlr4Lvg' -H 'Content-Length: 0' http://127.0.0.1:8001/groups/12/
+INFO     Logger:logger.py:33 Response status code = 200, elapsed_time= '0:00:00.007979'
+{
+  "detail": "Group deleted"
+}
